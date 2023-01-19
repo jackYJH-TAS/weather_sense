@@ -5,9 +5,7 @@ import "./index.css";
 import { Provider } from "./context/CityContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const valueToShare = {
 
-};
 
 root.render(
   <Provider>

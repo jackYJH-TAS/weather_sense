@@ -1,26 +1,23 @@
 import CurrentWeather from "./CurrentWeather";
 import Dropdown from "./Dropdown";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import UseCityContext from "../hooks/UseCityContext";
 
-function CityWeather({ }) {
-  const [cityName, setCityName] = useState("");
-  const [currentWeather, setCurrentWeather] = useState([]);
+function CityWeather({}) {
   const options = [{ label: "Celsius" }, { label: "Fahrenheit" }];
   const [selection, setSelection] = useState("Celsius");
-
-  useEffect(() => {
-    
-  }, []);
+  const { cityName, lastUpdateTime } = UseCityContext();
 
   //handle when user selects
   const handleOnSelect = (option) => {
     setSelection(option);
-    //console.log(option);
+    //setCurrentSelection(selection.label);
+    //console.log(selection);
   };
 
   const handleCityInput = (name) => {
-    setCityName(name);
-    //console.log(cityName);
+    //setCityName(name);
+    console.log(cityName);
   };
 
   const handleOnSubmit = async () => {
@@ -36,8 +33,8 @@ function CityWeather({ }) {
           onChange={handleOnSelect}
           className="column"
         />
-        <div className="column absolute right-5">
-          <div>last update time:</div>
+        <div className="column flex text-right right-5 text-green-400">
+          <div>Last Update Time {lastUpdateTime}</div>
         </div>
       </div>
       <div>

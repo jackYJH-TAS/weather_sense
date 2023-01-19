@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import Panel from "./Panel";
+import UseCityContext from "../hooks/UseCityContext";
 
 const Dropdown = ({ options, value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef();
+    const {toF,toC } = UseCityContext();
 
   useEffect(() => {
     const handler = (e) => {
@@ -32,6 +34,13 @@ const Dropdown = ({ options, value, onChange }) => {
   const handleOptionClick = (option) => {
     setIsOpen(false);
     onChange(option);
+    if (option.label === "Celsius"){
+      toC();
+    } 
+    if (option.label === "Fahrenheit") {
+      toF();
+    }
+      //console.log(option.label);
   };
 
   const renderedOptions = options.map((item) => {
