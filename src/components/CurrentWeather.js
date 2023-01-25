@@ -42,7 +42,7 @@ const CurrentWeather = ({ setSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //setCity(cityName);
-    console.log(newCityName);
+    // console.log(newCityName);
     setSubmit();
     fetchNewCity(newCityName);
   };
