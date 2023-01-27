@@ -12,30 +12,20 @@ const CityTab = () => {
   const handleAddCityClick = () => {
     createCityArray("New City");
     localStorage.setItem("Cities", JSON.stringify(cityArrays));
-    console.log("--", cityArrays);
+    // console.log("--", cityArrays);
   };
   const handleRemoveCityClick = () => {
     removeCityArray(tabIndex);
     localStorage.setItem("Cities", JSON.stringify(cityArrays));
     setTabHighlight(tabHighlight - 1);
-    console.log("--", cityArrays);
+    // console.log("--", cityArrays);
   };
   const handleOnClick = (index) => {
     setTabHighlight(index);
   };
 
   useEffect(() => {
-    //console.log("CityTab, beginning,", tabHighlight);
-    console.log(
-      "4",
-      cityArrays,
-      "-",
-      JSON.parse(localStorage.getItem("Cities"))
-    );
-
-    if (JSON.parse(localStorage.getItem("Cities")) !== cityArrays) {
-      localStorage.setItem("Cities", JSON.stringify(cityArrays));
-    }
+    localStorage.setItem("Cities", JSON.stringify(cityArrays));
 
     if (cityArrays !== null) {
       renderedCityArray = cityArrays.map((item, index) => {
@@ -49,6 +39,7 @@ const CityTab = () => {
           <button
             className={tabClass}
             id={index}
+            key={item.name}
             onClick={(e) => {
               updateTab(e.target.attributes.id.value);
               handleOnClick(e.target.attributes.id.value);
@@ -58,21 +49,8 @@ const CityTab = () => {
           </button>
         );
       });
-      console.log(
-        "5",
-        cityArrays,
-        "-",
-        JSON.parse(localStorage.getItem("Cities"))
-      );
     }
-
     setTabs(renderedCityArray);
-    console.log(
-      "7------ ",
-      cityArrays,
-      " ----- ",
-      JSON.parse(localStorage.getItem("Cities"))
-    );
   }, [cityArrays, tabIndex, tabHighlight]);
 
   return (

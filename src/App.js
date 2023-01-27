@@ -15,17 +15,20 @@ import axios from "axios";
 
 function App() {
   //const { longitude } = UseCityContext();
-  const { currentCondition, loader, city } = UseCityContext();
+  const { currentCondition, loader, city, cityArrays } = UseCityContext();
   const [backgroundImg, setBackgroundImg] = useState(null);
 
   useEffect(() => {
-    //console.log(locationRespond.location.name);
+    // console.log("[[[", cityArrays);
 
     const imgRespond = async (term) => {
+      if (city === "" || city === null) {
+        city = "sky";
+      }
       const response = await axios.get(
         "https://api.unsplash.com/photos/random",
         {
-          params: { query: city + term, per_page: 1 },
+          params: { query: city + " " + term, per_page: 1 },
           headers: {
             Authorization:
               "Client-ID YLoBGLjk7_hn3pMNeSH0nPJ_i8qoEAizCs7P4vN3RCM",
@@ -42,7 +45,7 @@ function App() {
     // }
 
     imgRespond(currentCondition);
-  }, [currentCondition]);
+  }, [currentCondition, cityArrays]);
 
   return (
     <div>

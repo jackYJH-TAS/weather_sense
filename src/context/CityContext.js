@@ -268,6 +268,7 @@ const Provider = ({ children }) => {
     updateCityArray,
     swapTab,
     tabIndex,
+    setCityArrays,
     updateTab: (index) => {
       setSwapTab(true);
       setTabIndex(index);

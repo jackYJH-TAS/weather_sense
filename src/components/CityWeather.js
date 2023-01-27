@@ -33,7 +33,7 @@ function CityWeather({}) {
           onChange={handleOnSelect}
           className="column"
         />
-        <div className="column flex text-right right-5 text-green-400">
+        <div className="column flex text-right right-5 text-green-200 flex-row-reverse">
           <div>Last Update Time {lastUpdateTime}</div>
         </div>
       </div>
